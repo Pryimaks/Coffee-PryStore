@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Coffee_PryStore.Migrations
 {
     [DbContext(typeof(DataBaseHome))]
-    [Migration("20241104235537_OrderUpdateALLn")]
-    partial class OrderUpdateALLn
+    [Migration("20260304200756_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -150,6 +150,9 @@ namespace Coffee_PryStore.Migrations
                     b.Property<decimal>("CofPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<byte[]>("ImageData")
                         .HasColumnType("varbinary(max)");
 
@@ -197,7 +200,7 @@ namespace Coffee_PryStore.Migrations
             modelBuilder.Entity("Coffee_PryStore.Models.Order", b =>
                 {
                     b.HasOne("Coffee_PryStore.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -227,6 +230,11 @@ namespace Coffee_PryStore.Migrations
             modelBuilder.Entity("Coffee_PryStore.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("Coffee_PryStore.Models.User", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }
