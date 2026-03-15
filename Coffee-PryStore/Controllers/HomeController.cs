@@ -56,8 +56,7 @@ namespace Coffee_PryStore.Controllers
             return View();
         }
 
-       
-
+      
         public IActionResult DetailsProduct(int id)
         {
             var product = _context.Table.FirstOrDefault(p => p.CofId == id);

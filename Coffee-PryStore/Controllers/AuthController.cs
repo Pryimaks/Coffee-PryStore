@@ -58,6 +58,7 @@ namespace Coffee_PryStore.Controllers
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, "CookieAuth");
+
             var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
             await HttpContext.SignInAsync("CookieAuth", claimsPrincipal);
